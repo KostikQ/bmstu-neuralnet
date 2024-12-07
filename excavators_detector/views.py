@@ -10,6 +10,7 @@ from sympy import false
 
 from excavators_detector.forms import ImageForm
 from excavators_detector.process_image import process
+from neuralnet import settings
 
 
 # Create your views here.
@@ -55,8 +56,14 @@ def image_upload_view(request):
             form.save()
             # Get the current instance object to display in the template
             img_obj = form.instance
-
+            print(f"MEDIA_ROOT: {settings.MEDIA_ROOT}")
+            print(f"MEDIA_URL: {settings.MEDIA_URL}")
+            print(f"Image URL: {img_obj.image.url}")
+            import os
+            print(os.access("C:\\Univer\\Usability\\Labs\\bmstu-neuralnet\\media\\images\\sany-sy335c_DYbzaqL.jpg",
+                            os.R_OK))
             return render(request, 'excdet.html', {'form': form, 'img_obj': img_obj, 'error': False})
+            # return render(request, 'excdet.html', {'form': form, 'image_url': 'images/sany-sy335c_VjEATAo.jpg', 'error': False})
     else:
         form = ImageForm()
     return render(request, 'excdet.html', {'form': form})

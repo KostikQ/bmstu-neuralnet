@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-
-from neuralnet import views
+from django.conf.urls.static import static
+from neuralnet import views, settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +26,6 @@ urlpatterns = [
     path('image_classification/', include('image_classification.urls')),
     path('excavators_detector/', include('excavators_detector.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
