@@ -24,4 +24,5 @@ urlpatterns = [
     path('bert_classifier/', include('bert_classifier.urls')),
     path('dialog_bot/', include('dialog_bot.urls')),
     path('image_classification/', include('image_classification.urls')),
+    path('excavators_detector/', include('excavators_detector.urls')),
 ]
